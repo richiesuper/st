@@ -7,8 +7,13 @@ VERSION = 0.8.4
 PREFIX = /usr/local
 MANPREFIX = $(PREFIX)/share/man
 
-X11INC = /usr/X11R6/include
-X11LIB = /usr/X11R6/lib
+# Default X11INC and X11LIB dirs
+#X11INC = /usr/X11R6/include
+#X11LIB = /usr/X11R6/lib
+
+# Modified X11INC and X11LIB dirs to work on FreeBSD
+X11INC = /usr/local/include
+X11LIB = /usr/local/lib
 
 PKG_CONFIG = pkg-config
 
