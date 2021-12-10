@@ -27,8 +27,8 @@ X11LIB = /usr/local/lib
        #`$(PKG_CONFIG) --libs freetype2`
 
 # Modified (simple way) includes and libs for FreeBSD
-INCFLAGS = -I/usr/local/include/freetype2 -I/usr/local/include/libpng16 \		   -I/usr/local/include/harfbuzz -I/usr/local/include/glib-2.0 \
-	   -I/usr/local/include/glib-2.0/glib
+INCFLAGS = -I/usr/local/include/freetype2 -I/usr/local/include/libpng16 -I/usr/local/include/harfbuzz -I/usr/local/include/glib-2.0 -I/usr/local/include/glib-2.0/glib
+
 LIBFLAGS = -lfontconfig -lfreetype
 
 INCS = -I$(X11INC) $(INCFLAGS)
