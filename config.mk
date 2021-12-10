@@ -15,15 +15,24 @@ MANPREFIX = $(PREFIX)/share/man
 X11INC = /usr/local/include
 X11LIB = /usr/local/lib
 
-PKG_CONFIG = pkg-config
+# Uncomment if you have pkg-config installed on your system
+#PKG_CONFIG = pkg-config
 
-# includes and libs
-INCS = -I$(X11INC) \
-       `$(PKG_CONFIG) --cflags fontconfig` \
-       `$(PKG_CONFIG) --cflags freetype2`
-LIBS = -L$(X11LIB) -lm -lrt -lX11 -lutil -lXft \
-       `$(PKG_CONFIG) --libs fontconfig` \
-       `$(PKG_CONFIG) --libs freetype2`
+# Original includes and libs
+#INCS = -I$(X11INC) \
+       #`$(PKG_CONFIG) --cflags fontconfig` \
+       #`$(PKG_CONFIG) --cflags freetype2`
+#LIBS = -L$(X11LIB) -lm -lrt -lX11 -lutil -lXft \
+       #`$(PKG_CONFIG) --libs fontconfig` \
+       #`$(PKG_CONFIG) --libs freetype2`
+
+# Modified (simple way) includes and libs for FreeBSD
+INCFLAGS = -I/usr/local/include/freetype2 -I/usr/local/include/libpng16 \		   -I/usr/local/include/harfbuzz -I/usr/local/include/glib-2.0 \
+	   -I/usr/local/include/glib-2.0/glib
+LIBFLAGS = -lfontconfig -lfreetype
+
+INCS = -I$(X11INC) $(INCFLAGS)
+LIBS = -L$(X11LIB) -lm -lrt -lX11 -lutil -lXft $(LIBFLAGS)
 
 # flags
 STCPPFLAGS = -DVERSION=\"$(VERSION)\" -D_XOPEN_SOURCE=600
