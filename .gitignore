@@ -1,3 +1,4 @@
-# Ignore all .o files and executables
+# Ignore all .o files, .orig files and executables
 *.o
+*.orig
 st
