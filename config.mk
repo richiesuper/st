@@ -8,31 +8,30 @@ PREFIX = /usr/local
 MANPREFIX = $(PREFIX)/share/man
 
 # Default X11INC and X11LIB dirs
-#X11INC = /usr/X11R6/include
-#X11LIB = /usr/X11R6/lib
+X11INC = /usr/X11R6/include
+X11LIB = /usr/X11R6/lib
 
-# Modified X11INC and X11LIB dirs to work on FreeBSD
-X11INC = /usr/local/include
-X11LIB = /usr/local/lib
+# Modified X11INC and X11LIB dirs to work on Gentoo
+#X11INC = /usr/include/
+#X11LIB = /usr/lib/
 
 # Uncomment if you have pkg-config installed on your system
-#PKG_CONFIG = pkg-config
+PKG_CONFIG = pkg-config
 
 # Original includes and libs
-#INCS = -I$(X11INC) \
-       #`$(PKG_CONFIG) --cflags fontconfig` \
-       #`$(PKG_CONFIG) --cflags freetype2`
-#LIBS = -L$(X11LIB) -lm -lrt -lX11 -lutil -lXft \
-       #`$(PKG_CONFIG) --libs fontconfig` \
-       #`$(PKG_CONFIG) --libs freetype2`
+INCS = -I$(X11INC) \
+       `$(PKG_CONFIG) --cflags fontconfig` \
+       `$(PKG_CONFIG) --cflags freetype2`
+LIBS = -L$(X11LIB) -lm -lrt -lX11 -lutil -lXft -lXrender\
+       `$(PKG_CONFIG) --libs fontconfig` \
+       `$(PKG_CONFIG) --libs freetype2`
 
 # Modified (simple way) includes and libs for FreeBSD
-INCFLAGS = -I/usr/local/include/freetype2 -I/usr/local/include/libpng16 -I/usr/local/include/harfbuzz -I/usr/local/include/glib-2.0 -I/usr/local/include/glib-2.0/glib
+#INCFLAGS = -I/usr/local/include/freetype2 -I/usr/local/include/libpng16 -I/usr/local/include/harfbuzz -I/usr/local/include/glib-2.0 -I/usr/local/include/glib-2.0/glib
+#LIBFLAGS = -lfontconfig -lfreetype
 
-LIBFLAGS = -lfontconfig -lfreetype
-
-INCS = -I$(X11INC) $(INCFLAGS)
-LIBS = -L$(X11LIB) -lm -lrt -lX11 -lutil -lXft $(LIBFLAGS)
+#INCS = -I$(X11INC) $(INCFLAGS)
+#LIBS = -L$(X11LIB) -lm -lrt -lX11 -lutil -lXft $(LIBFLAGS)
 
 # flags
 STCPPFLAGS = -DVERSION=\"$(VERSION)\" -D_XOPEN_SOURCE=600
